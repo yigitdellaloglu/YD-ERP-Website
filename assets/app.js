@@ -101,7 +101,7 @@
   /* ---- İndirme: cihaza göre öne çıkar ----
      Gerçek bağlantıları buraya yazın; boş kalanlar tıklanınca not gösterir. */
   var DOWNLOADS = {
-    windows: { url: '', label: 'Windows için indir', name: 'Windows' },
+    windows: { url: 'https://github.com/yigitdellaloglu/YD-ERP-Lisans/releases/download/v1.1.1/YD-ERP-Kurulum-1.1.1.exe', label: 'Windows için indir', name: 'Windows' },
     mac:     { soon: true, name: 'macOS' },
     ios:     { soon: true, name: 'iPhone ve iPad' },
     android: { soon: true, name: 'Android' }
