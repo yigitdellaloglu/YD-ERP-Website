@@ -3,8 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="YD ERP: satış, stok, üretim, sevkiyat, e-Fatura ve tahsilat tek kayıtta.">
-  <title>YD ERP</title>
+  <title>YD ERP · Dükkân ve şirketler için ön muhasebe ve stok programı</title>
+  <meta name="description" content="YD ERP; satış, stok, veresiye, çek/senet, kasa ve banka işlerini tek programda toplar. Windows bilgisayarınızda internetsiz çalışır, verileriniz sizde kalır.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="YD ERP · Satış, stok, veresiye ve çek/senet tek programda">
+  <meta property="og:description" content="Windows bilgisayarınızda internetsiz çalışan, Türkçe ön muhasebe ve stok programı.">
+  <meta property="og:image" content="assets/img/app/genel-bakis.jpg">
+  <meta name="theme-color" content="#050505">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23050505'/%3E%3Cpath d='M16 6 27 11.5 16 17 5 11.5Z' fill='%23fff'/%3E%3Cpath d='M5 15.5 16 21l11-5.5M5 20 16 25.5 27 20' stroke='%23fff' stroke-width='1.6' fill='none' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=JetBrains+Mono:wght@400;500;600&display=swap">
@@ -23,13 +29,14 @@
       YD ERP
     </a>
     <ul class="nav__links">
+      <li><a href="#ekranlar">Ekranlar</a></li>
       <li><a href="#moduller">Modüller</a></li>
-      <li><a href="#panel">Yönetici paneli</a></li>
-      <li><a href="#e-donusum">e-Dönüşüm</a></li>
-      <li><a href="#gecis">Geçiş</a></li>
+      <li><a href="#ozellikler">Özellikler</a></li>
+      <li><a href="#guvence">Verileriniz</a></li>
+      <li><a href="#sss">Sık sorulanlar</a></li>
     </ul>
-    <a class="btn btn--sm btn--ghost nav__dl" href="#indir">Hemen indir</a>
-    <a class="btn btn--sm" href="#demo">Demo iste</a>
+    <a class="btn btn--sm btn--ghost nav__dl" href="#iletisim">Bize ulaşın</a>
+    <a class="btn btn--sm" href="#indir">İndir</a>
   </div>
 </header>
 
@@ -38,274 +45,215 @@
     <div class="wrap">
       <div class="hero__grid">
         <div class="hero__copy">
-          <h1 id="hero-h">Tekliften tahsilata tek kayıt.</h1>
-          <p class="lede">YD ERP satış, stok, üretim, sevkiyat, fatura ve tahsilatı aynı kayıt üzerinde çalıştırır. Bilgi bir kez girilir, her departman aynı rakamı görür.</p>
-          <form class="hero-form" id="hero-form" novalidate>
-            <label class="vh" for="hero-email">İş e-postanız</label>
-            <input class="field" id="hero-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="ad@firmaniz.com.tr">
-            <button class="btn" type="submit">Demo iste
-              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-          </form>
-          <p class="hero__note">Ekran paylaşımıyla, sizin süreçleriniz üzerinden gösteriyoruz.</p>
-          <p class="hero__alt">Hemen denemek mi istiyorsunuz? <a href="#indir">Uygulamayı indirin</a></p>
+          <p class="eyebrow"><span class="dot" aria-hidden="true"></span><b>YD ERP 1.4</b> ile yeni: çek/senet, Excel'den aktarma, stok sayımı</p>
+          <h1 id="hero-h">İşletmenizin tamamı tek programda.</h1>
+          <p class="lede">Satış, stok, veresiye, çek/senet, kasa ve banka. YD ERP Windows bilgisayarınızda <b>internetsiz</b> çalışır; verileriniz kendi bilgisayarınızda kalır, her gün kendiliğinden yedeklenir.</p>
+          <div class="hero__cta">
+            <a class="btn btn--lg dl-link" href="https://github.com/yigitdellaloglu/YD-ERP-Lisans/releases/latest" rel="noopener">
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v9M4 7.5 8 11.5l4-4M3 14h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Windows için indir
+            </a>
+            <a class="btn btn--lg btn--ghost" href="#ekranlar">Ekranları görün</a>
+          </div>
+          <ul class="facts" aria-label="Kısaca YD ERP">
+            <li>Windows 10 / 11</li>
+            <li>Tamamen Türkçe</li>
+            <li>İnternetsiz çalışır</li>
+            <li>Günlük otomatik yedek</li>
+          </ul>
         </div>
         <div class="hero__stage" aria-hidden="true"><canvas id="hero3d"></canvas></div>
       </div>
 
-      <div class="trace" aria-label="Bir siparişin belge izi">
+      <div class="trace" aria-label="Bir satışın belge izi">
         <div class="trace__head">
-          <span class="trace__title">Bir siparişin belge izi · Örnek Makina A.Ş. · 250 adet M12 bağlantı parçası</span>
+          <span class="trace__title">Bir satışın belge izi · Lezzet Lokantası · 30 koli bakkaliye</span>
           <span class="tag">Örnek veri</span>
         </div>
         <ol class="trace__list" id="trace">
-          <li class="step"><span class="step__mod"><i class="step__dot"></i>Satış</span><span class="step__doc">SİP-2026-1187</span><span class="step__meta">09.10 · 09:40</span></li>
-          <li class="step"><span class="step__mod"><i class="step__dot"></i>Stok</span><span class="step__doc">Rezerve 250 ad.</span><span class="step__meta">DEPO-1 · 09:40</span></li>
-          <li class="step"><span class="step__mod"><i class="step__dot"></i>Üretim</span><span class="step__doc">İE-2026-0331</span><span class="step__meta">09.10 · 11:05</span></li>
-          <li class="step"><span class="step__mod"><i class="step__dot"></i>Sevkiyat</span><span class="step__doc">YDI2026000001942</span><span class="step__meta">e-İrsaliye · 15:30</span></li>
-          <li class="step"><span class="step__mod"><i class="step__dot"></i>e-Fatura</span><span class="step__doc">YDE2026000004812</span><span class="step__meta">₺ 57.900,00</span></li>
-          <li class="step is-wait"><span class="step__mod"><i class="step__dot"></i>Tahsilat</span><span class="step__doc">Vade 08.11.2026</span><span class="step__meta">Bekliyor</span></li>
+          <li class="step"><span class="step__mod"><i class="step__dot"></i>Teklif</span><span class="step__doc">STK-2026-000014</span><span class="step__meta">14.10 · 10:20</span></li>
+          <li class="step"><span class="step__mod"><i class="step__dot"></i>Sipariş</span><span class="step__doc">SSP-2026-000009</span><span class="step__meta">15.10 · 09:05</span></li>
+          <li class="step"><span class="step__mod"><i class="step__dot"></i>Sevk irsaliyesi</span><span class="step__doc">SIR-2026-000006</span><span class="step__meta">Ana Depo · 15.10</span></li>
+          <li class="step"><span class="step__mod"><i class="step__dot"></i>Satış</span><span class="step__doc">SAT-2026-000231</span><span class="step__meta">₺ 12.350,00</span></li>
+          <li class="step"><span class="step__mod"><i class="step__dot"></i>Cari hesap</span><span class="step__doc">Vade 30.10.2026</span><span class="step__meta">Veresiye</span></li>
+          <li class="step is-wait"><span class="step__mod"><i class="step__dot"></i>Çek</span><span class="step__doc">CEK-2026-000004</span><span class="step__meta">Portföyde</span></li>
         </ol>
       </div>
     </div>
   </section>
 
-  <section class="sec" id="moduller" aria-labelledby="mod-h">
+  <section class="sec" id="ekranlar" aria-labelledby="scr-h">
     <div class="wrap">
       <div class="sec__head">
-        <h2 id="mod-h">Altı modül, aynı kayıt.</h2>
-        <p class="lede">Her modül bir öncekinin bıraktığı yerden devam eder. Satışın girdiği sipariş, depoda rezervasyon, üretimde iş emri, sevkiyatta irsaliye, muhasebede fatura olur. Kimse aynı bilgiyi yeniden yazmaz.</p>
+        <h2 id="scr-h">Programın kendisi. Çizim değil.</h2>
+        <p class="lede">Aşağıdakiler YD ERP'nin gerçek ekranları. Sade, karanlık bir arayüz; uzun gün boyunca göz yormaz. Her şey Türkçe, her ekran birkaç tıklık uzaklıkta.</p>
+      </div>
+      <div class="shots">
+        <div class="shots__tabs" role="tablist" aria-label="Ekranlar">
+          <button type="button" role="tab" aria-selected="true" aria-controls="shot-panel" data-shot="genel-bakis" data-cap="Genel Bakış: satış, alış, kasa ve stok değeri; dönem karşılaştırması ve müşterilere göre satış.">Genel bakış</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="shot-panel" data-shot="hizli-satis" data-cap="Hızlı satış: barkodu okutun, müşteriyi seçin; veresiye borcu ve vadesi geçen tutar anında görünür.">Hızlı satış</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="shot-panel" data-shot="cek-senet" data-cap="Çek / senet: portföydeki, vadesi geçen ve ödenecek çekler; tahsil, ciro, karşılıksız ve ödeme tek ekranda.">Çek / senet</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="shot-panel" data-shot="stok-durumu" data-cap="Stok durumu: depo depo miktarlar, ortalama maliyet, stok değeri ve kritik seviyedeki ürünler.">Stok</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="shot-panel" data-shot="veresiye" data-cap="Veresiye takibi: kim ne kadar borçlu, en eski borç kaç günlük, son tahsilat ne zaman.">Veresiye</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="shot-panel" data-shot="kar-zarar" data-cap="Kâr/zarar ve nakit akışı: dönemin net kârı ve 30 gün sonra kasanızda olması beklenen para, çekler dahil.">Kâr / zarar</button>
+        </div>
+        <figure class="shot" id="shot-panel" role="tabpanel">
+          <div class="shot__frame">
+            <div class="shot__bar" aria-hidden="true"><i></i><i></i><i></i><span>YD ERP</span></div>
+            <img id="shot-img" src="assets/img/app/genel-bakis.jpg" width="1440" height="900" alt="YD ERP Genel Bakış ekranı" decoding="async">
+          </div>
+          <figcaption><span id="shot-cap">Genel Bakış: satış, alış, kasa ve stok değeri; dönem karşılaştırması ve müşterilere göre satış.</span> <span class="tag">Gerçek ekran · örnek veri</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="moduller" aria-labelledby="mod-h" style="padding-top: 0">
+    <div class="wrap">
+      <div class="sec__head">
+        <h2 id="mod-h">Tekliften tahsilata, aynı kayıt.</h2>
+        <p class="lede">Teklif siparişe, sipariş irsaliyeye, irsaliye satışa dönüşür. Stok düşer, cari borçlanır, tahsilat ya da çek geldiğinde hesap kapanır. Aynı bilgiyi kimse ikinci kez yazmaz.</p>
       </div>
       <div class="mods">
         <div class="mods__list" id="mods">
           <article class="mod" data-i="0">
-            <h3>Satış &amp; CRM</h3>
-            <p>Teklifi hazırlayın, müşteri onaylayınca tek adımda siparişe çevirin. Fiyat ve iskonto kuralları teklif anında uygulanır.</p>
-            <ul><li>Müşteri kartları ve görüşme geçmişi</li><li>Fiyat listeleri ve iskonto kuralları</li><li>Tekliften siparişe dönüşüm</li><li>Temsilci bazında satış takibi</li></ul>
-            <p class="mod__writes">Kayda yazar: <b>müşteri · fiyat · sipariş satırları</b></p>
+            <h3>Teklif &amp; Sipariş</h3>
+            <p>Müşteriye teklif hazırlayın, onaylanınca tek tıkla siparişe çevirin. Fiyat listeleri ve iskontolar satırlara kendiliğinden gelir.</p>
+            <ul><li>Satış ve alış teklifleri</li><li>Teklifi siparişe dönüştürme</li><li>Müşteriye özel fiyat listeleri</li><li>A4 yazdırma ve PDF</li></ul>
+            <p class="mod__writes">Belge: <b>STK · SSP</b></p>
           </article>
           <article class="mod" data-i="1">
             <h3>Stok &amp; Depo</h3>
-            <p>Sipariş girildiği anda ürün rezerve edilir. Satış ekibi, depoda gerçekten satılabilir olan miktarı görür.</p>
-            <ul><li>Çoklu depo ve raf adresi</li><li>Barkodlu giriş ve çıkış</li><li>Seri ve lot takibi</li><li>Minimum stok uyarıları</li></ul>
-            <p class="mod__writes">Kayda yazar: <b>rezervasyon · depo hareketi</b></p>
+            <p>Her satış ve alış stoğu anında günceller. Hangi ürün kritik seviyede, hangisi kaç gün sonra biter, hangisi aylardır satılmıyor; hepsi görünür.</p>
+            <ul><li>Çoklu depo ve depolar arası transfer</li><li>Barkod, barkod etiketi yazdırma</li><li>Barkodla stok sayımı, farklar tek tıkla</li><li>Ortalama maliyet ve stok değeri</li></ul>
+            <p class="mod__writes">Belge: <b>SDZ · STR</b></p>
           </article>
           <article class="mod" data-i="2">
-            <h3>Üretim &amp; Satın alma</h3>
-            <p>Ürün reçetesi iş emrine, eksik malzeme satın alma talebine dönüşür. Maliyet, gerçek sarf üzerinden hesaplanır.</p>
-            <ul><li>Ürün reçetesi (BOM)</li><li>İş emri ve operasyon takibi</li><li>Tedarikçi tekliflerini karşılaştırma</li><li>Satın alma siparişi ve mal kabul</li></ul>
-            <p class="mod__writes">Kayda yazar: <b>iş emri · sarf · maliyet</b></p>
+            <h3>Sevk İrsaliyesi</h3>
+            <p>Siparişten ya da doğrudan irsaliye kesin; mal çıkarken stok düşer. İrsaliyeleri toplu olarak tek satış belgesine bağlayın.</p>
+            <ul><li>Satış ve alış irsaliyeleri</li><li>Toplu faturalandırma</li><li>İrsaliye raporu</li><li>Yazdırma ve PDF</li></ul>
+            <p class="mod__writes">Belge: <b>SIR · AIR</b></p>
           </article>
           <article class="mod" data-i="3">
-            <h3>Sevkiyat</h3>
-            <p>Hazır olan sipariş toplama listesine düşer, e-İrsaliye ile yola çıkar. Kısmi sevkiyatlar siparişin üzerinde izlenir.</p>
-            <ul><li>Toplama listeleri</li><li>Kısmi ve toplu sevkiyat</li><li>Araç ve şoför bilgisi</li><li>e-İrsaliye düzenleme</li></ul>
-            <p class="mod__writes">Kayda yazar: <b>irsaliye · teslim durumu</b></p>
+            <h3>Satış &amp; Alış</h3>
+            <p>Kasada barkodla hızlı satış, ofiste ayrıntılı belge. Peşin, kartlı ya da veresiye; alışta KDV'yi siz belirleyin, tedarikçisiz peşin alım da olur.</p>
+            <ul><li>Hızlı satış ekranı ve kısayollar</li><li>Satış ve alış iadeleri</li><li>Taksitli satış</li><li>Belgeyi WhatsApp ile gönderme</li></ul>
+            <p class="mod__writes">Belge: <b>SAT · ALS · SIA · AIA</b></p>
           </article>
           <article class="mod" data-i="4">
-            <h3>e-Fatura &amp; e-Arşiv</h3>
-            <p>Fatura, sevk edilen miktardan oluşur. Alıcı e-Fatura mükellefiyse e-Fatura, değilse e-Arşiv olarak düzenlenir.</p>
-            <ul><li>e-Fatura ve e-Arşiv fatura</li><li>KDV oranları ve tevkifat</li><li>GİB gönderim ve yanıt takibi</li><li>Gelen faturaların onayı</li></ul>
-            <p class="mod__writes">Kayda yazar: <b>fatura · KDV</b></p>
+            <h3>Cari &amp; Veresiye</h3>
+            <p>Müşteri ve tedarikçi hesapları, ekstreler ve açılış bakiyeleri. Kimin ne kadar borcu olduğunu, borcun kaç günlük olduğunu programa sormanız yeter.</p>
+            <ul><li>Cari ekstre ve açılış bakiyesi (devir)</li><li>Veresiye takibi ve kredi limiti</li><li>Borç / alacak yaşlandırma</li><li>Müşteri segmentleri ve takip notları</li></ul>
+            <p class="mod__writes">Belge: <b>DVR · cari ekstre</b></p>
           </article>
           <article class="mod" data-i="5">
-            <h3>Finans &amp; Tahsilat</h3>
-            <p>Faturanın vadesi geldiğinde tahsilat listesine düşer. Banka hareketi geldiğinde cari hesap kendiliğinden kapanır.</p>
-            <ul><li>Cari hesap ekstreleri</li><li>Banka ve kasa hareketleri</li><li>Çek ve senet takibi</li><li>Vade ve yaşlandırma raporu</li></ul>
-            <p class="mod__writes">Kayda yazar: <b>tahsilat · cari bakiye</b></p>
+            <h3>Kasa, Banka &amp; Çek</h3>
+            <p>Tahsilat, ödeme, virman, gider ve gelir. Alınan çekler portföyde, verdiğiniz çekler vadesinde; nakit akışı projeksiyonu hepsini hesaba katar.</p>
+            <ul><li>Çek / senet: tahsil, ciro, karşılıksız, ödeme</li><li>Kasa devri ve para sayma</li><li>Kredi kartı ekstreleri</li><li>Net kâr/zarar ve nakit akışı</li></ul>
+            <p class="mod__writes">Belge: <b>TAH · ODM · VRM · CEK · SNT</b></p>
           </article>
         </div>
         <div class="mods__stage" aria-hidden="true">
           <canvas id="mods3d"></canvas>
-          <p class="mods__caption">Aktif katman: <b id="mods-cap">Satış &amp; CRM</b></p>
+          <p class="mods__caption">Aktif katman: <b id="mods-cap">Teklif &amp; Sipariş</b></p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="sec" id="panel" aria-labelledby="panel-h" style="padding-top: 0">
+  <section class="sec" id="ozellikler" aria-labelledby="feat-h" style="border-top:1px solid var(--line)">
     <div class="wrap">
       <div class="sec__head">
-        <h2 id="panel-h">Sabah ilk bakılan ekran.</h2>
-        <p class="lede">Yönetici paneli bütün modüllerden aynı anda beslenir. Nakit, stok ve siparişler tek ekranda; bir rakamın arkasındaki belgeye oradan inersiniz.</p>
+        <h2 id="feat-h">Her gün kullandığınız her şey.</h2>
+        <p class="lede">Ek modül satın almadan, kurulumla birlikte gelir.</p>
       </div>
-      <div class="dash-stage">
-        <div class="dash" id="dash">
-          <aside class="dash__side" aria-hidden="true">
-            <span class="brand"><svg viewBox="0 0 32 32" fill="none"><path d="M16 4 29 10.5 16 17 3 10.5Z" fill="#fff"/><path d="M3 15.5 16 22l13-6.5" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><path d="M3 20.5 16 27l13-6.5" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" opacity=".55"/></svg>YD ERP</span>
-            <span class="dash__nav is-on">Özet</span>
-            <span class="dash__nav">Satış</span>
-            <span class="dash__nav">Stok</span>
-            <span class="dash__nav">Üretim</span>
-            <span class="dash__nav">Sevkiyat</span>
-            <span class="dash__nav">Finans</span>
-            <span class="dash__nav">İK &amp; Bordro</span>
-            <span class="dash__nav">Raporlar</span>
-          </aside>
-          <div class="dash__main">
-            <div class="dash__top">
-              <h3>Özet</h3>
-              <span class="mono">Perşembe, 09.10.2026 · Merkez + 2 şube</span>
-              <span class="tag">Örnek veri</span>
-            </div>
-            <div class="kpis">
-              <div class="kpi"><span class="kpi__l">Ekim cirosu</span><span class="kpi__v">₺&nbsp;2.184.600</span><span class="kpi__d">Eylül: ₺&nbsp;3.912.300</span></div>
-              <div class="kpi"><span class="kpi__l">Açık sipariş</span><span class="kpi__v">37</span><span class="kpi__d">12'si bu hafta sevk</span></div>
-              <div class="kpi"><span class="kpi__l">Vadesi geçen alacak</span><span class="kpi__v">₺&nbsp;126.400</span><span class="kpi__d">4 cari</span></div>
-              <div class="kpi"><span class="kpi__l">Kritik stok</span><span class="kpi__v">6 kalem</span><span class="kpi__d">3'ü için talep açık</span></div>
-            </div>
-            <div class="dgrid">
-              <div class="box">
-                <div class="box__h"><b>Haftalık nakit akışı</b><span class="legend"><span><i style="background:#fff"></i>Giriş</span><span><i style="border:1px solid #fff"></i>Çıkış</span><span>₺ bin</span></span></div>
-                <svg class="chart" viewBox="0 0 640 224" role="img" aria-label="30. ile 41. haftalar arası haftalık nakit girişi ve çıkışı, bin TL, örnek veri">
-<line x1="44" x2="632" y1="196.0" y2="196.0" stroke="rgba(255,255,255,0.28)"/>
-<text x="36" y="199.5" text-anchor="end">0</text>
-<line x1="44" x2="632" y1="136.0" y2="136.0" stroke="rgba(255,255,255,0.09)"/>
-<text x="36" y="139.5" text-anchor="end">200</text>
-<line x1="44" x2="632" y1="76.0" y2="76.0" stroke="rgba(255,255,255,0.09)"/>
-<text x="36" y="79.5" text-anchor="end">400</text>
-<line x1="44" x2="632" y1="16.0" y2="16.0" stroke="rgba(255,255,255,0.09)"/>
-<text x="36" y="19.5" text-anchor="end">600</text>
-<rect x="54.0" y="70.0" width="13" height="126.0" rx="2" fill="#fff"><title>Hf 30 giriş ₺420 bin</title></rect>
-<rect x="70.5" y="88.5" width="12" height="107.5" rx="2" fill="none" stroke="#fff" stroke-width="1"><title>Hf 30 çıkış ₺360 bin</title></rect>
-<text x="68.5" y="214" text-anchor="middle">Hf 30</text>
-<rect x="103.0" y="82.0" width="13" height="114.0" rx="2" fill="#fff"><title>Hf 31 giriş ₺380 bin</title></rect>
-<rect x="119.5" y="73.5" width="12" height="122.5" rx="2" fill="none" stroke="#fff" stroke-width="1"><title>Hf 31 çıkış ₺410 bin</title></rect>
-<text x="117.5" y="214" text-anchor="middle">Hf 31</text>
-<rect x="152.0" y="43.0" width="13" height="153.0" rx="2" fill="#fff"><title>Hf 32 giriş ₺510 bin</title></rect>
-<rect x="168.5" y="67.5" width="12" height="128.5" rx="2" fill="none" stroke="#fff" stroke-width="1"><title>Hf 32 çıkış ₺430 bin</title></rect>
-<text x="166.5" y="214" text-anchor="middle">Hf 32</text>
-<rect x="201.0" y="58.0" width="13" height="138.0" rx="2" fill="#fff"><title>Hf 33 giriş ₺460 bin</title></rect>
-<rect x="217.5" y="76.5" width="12" height="119.5" rx="2" fill="none" stroke="#fff" stroke-width="1"><title>Hf 33 çıkış ₺400 bin</title></rect>
-<text x="215.5" y="214" text-anchor="middle">Hf 33</text>
-<rect x="250.0" y="34.0" width="13" height="162.0" rx="2" fill="#fff"><title>Hf 34 giriş ₺540 bin</title></rect>
-<rect x="266.5" y="55.5" width="12" height="140.5" rx="2" fill="none" stroke="#fff" stroke-width="1"><title>Hf 34 çıkış ₺470 bin</title></rect>
-<text x="264.5" y="214" text-anchor="middle">Hf 34</text>
-<rect x="299.0" y="47.5" width="13" height="148.5" rx="2" fill="#fff"><title>Hf 35 giriş ₺495 bin</title></rect>
-<rect x="315.5" y="60.0" width="12" height="136.0" rx="2" fill="none" stroke="#fff" stroke-width="1"><title>Hf 35 çıkış ₺455 bin</title></rect>
-<text x="313.5" y="214" text-anchor="middle">Hf 35</text>
-<rect x="348.0" y="23.5" width="13" height="172.5" rx="2" fill="#fff"><title>Hf 36 giriş ₺575 bin</title></rect>
-<rect x="364.5" y="52.5" width="12" height="143.5" rx="2" fill="none" stroke="#fff" stroke-width="1"><title>Hf 36 çıkış ₺480 bin</title></rect>
-<text x="362.5" y="214" text-anchor="middle">Hf 36</text>
-<rect x="397.0" y="40.0" width="13" height="156.0" rx="2" fill="#fff"><title>Hf 37 giriş ₺520 bin</title></rect>
-<rect x="413.5" y="46.5" width="12" height="149.5" rx="2" fill="none" stroke="#fff" stroke-width="1"><title>Hf 37 çıkış ₺500 bin</title></rect>
-<text x="411.5" y="214" text-anchor="middle">Hf 37</text>
-<rect x="446.0" y="28.0" width="13" height="168.0" rx="2" fill="#fff"><title>Hf 38 giriş ₺560 bin</title></rect>
-<rect x="462.5" y="55.5" width="12" height="140.5" rx="2" fill="none" stroke="#fff" stroke-width="1"><title>Hf 38 çıkış ₺470 bin</title></rect>
-<text x="460.5" y="214" text-anchor="middle">Hf 38</text>
-<rect x="495.0" y="44.5" width="13" height="151.5" rx="2" fill="#fff"><title>Hf 39 giriş ₺505 bin</title></rect>
-<rect x="511.5" y="58.5" width="12" height="137.5" rx="2" fill="none" stroke="#fff" stroke-width="1"><title>Hf 39 çıkış ₺460 bin</title></rect>
-<text x="509.5" y="214" text-anchor="middle">Hf 39</text>
-<rect x="544.0" y="19.0" width="13" height="177.0" rx="2" fill="#fff"><title>Hf 40 giriş ₺590 bin</title></rect>
-<rect x="560.5" y="40.5" width="12" height="155.5" rx="2" fill="none" stroke="#fff" stroke-width="1"><title>Hf 40 çıkış ₺520 bin</title></rect>
-<text x="558.5" y="214" text-anchor="middle">Hf 40</text>
-<rect x="593.0" y="31.6" width="13" height="164.4" rx="2" fill="#fff"><title>Hf 41 giriş ₺548 bin</title></rect>
-<rect x="609.5" y="49.5" width="12" height="146.5" rx="2" fill="none" stroke="#fff" stroke-width="1"><title>Hf 41 çıkış ₺490 bin</title></rect>
-<text x="607.5" y="214" text-anchor="middle" fill="#f4f4f1">Hf 41</text>
-</svg>
-              </div>
-              <div class="box">
-                <div class="box__h"><b>Yaklaşan tahsilat</b><span class="mono" style="color:var(--mute);font-size:.74rem">30 gün</span></div>
-                <div class="dues">
-                  <div class="due"><span>Örnek Makina A.Ş.</span><span class="mono">57.900,00</span><small>YDE2026000004812</small><small style="text-align:right">08.11</small></div>
-                  <div class="due"><span>Anadolu Yapı Market</span><span class="mono">23.418,40</span><small>YDE2026000004790</small><small style="text-align:right">14.10</small></div>
-                  <div class="due"><span>Kuzey Tekstil Ltd.</span><span class="mono">91.250,00</span><small>YDE2026000004761</small><small style="text-align:right">21.10</small></div>
-                  <div class="due"><span>Ege Gıda Dağıtım</span><span class="mono">8.940,00</span><small>YDA2026000012077</small><small style="text-align:right">27.10</small></div>
-                </div>
-              </div>
-            </div>
-            <div class="dgrid">
-              <div class="box">
-                <div class="box__h"><b>Kritik stok</b><span class="mono" style="color:var(--mute);font-size:.74rem">Mevcut &lt; Minimum</span></div>
-                <div class="tblwrap">
-                  <table>
-                    <thead><tr><th>Stok kodu</th><th>Ürün</th><th class="n">Mevcut</th><th class="n">Min.</th><th>Durum</th></tr></thead>
-                    <tbody>
-                      <tr><td class="mono">RL-6204-2RS</td><td>Rulman 6204 2RS</td><td class="n">42</td><td class="n">150</td><td><span class="pill pill--solid">Kritik</span></td></tr>
-                      <tr><td class="mono">KB-NYM-3X25</td><td>Kablo NYM 3×2,5 mm²</td><td class="n">310 m</td><td class="n">500 m</td><td><span class="pill pill--solid">Kritik</span></td></tr>
-                      <tr><td class="mono">PB-M12-304</td><td>Paslanmaz bağlantı M12</td><td class="n">180</td><td class="n">400</td><td><span class="pill">Sipariş verildi</span></td></tr>
-                      <tr><td class="mono">SC-DKP-2MM</td><td>DKP sac 2 mm</td><td class="n">1,8 t</td><td class="n">3,0 t</td><td><span class="pill pill--dash">Talep açık</span></td></tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <div class="box">
-                <div class="box__h"><b>Bugün sevk</b><span class="mono" style="color:var(--mute);font-size:.74rem">5 sipariş</span></div>
-                <div class="dues">
-                  <div class="due"><span>SİP-2026-1187</span><span class="pill pill--solid">Yüklendi</span></div>
-                  <div class="due"><span>SİP-2026-1179</span><span class="pill">Toplanıyor</span></div>
-                  <div class="due"><span>SİP-2026-1176</span><span class="pill">Toplanıyor</span></div>
-                  <div class="due"><span>SİP-2026-1170</span><span class="pill pill--dash">Kısmi</span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="extras">
-        <div class="extra"><h3>Raporlama</h3><p>Satış, stok devir hızı, üretim maliyeti ve cari yaşlandırma raporları hazır gelir. Kendi raporunuzu sütun seçerek oluşturup Excel'e aktarabilirsiniz.</p></div>
-        <div class="extra"><h3>İK &amp; Bordro</h3><p>Personel kartları, izin ve mesai takibi, bordro hesaplaması. Üretimdeki iş emirlerine harcanan işçilik maliyete yansır.</p></div>
-        <div class="extra"><h3>Şubeler ve yetkiler</h3><p>Birden fazla şirket, şube ve depo tek veritabanında. Her kullanıcı yalnızca rolünün gerektirdiği ekranları ve rakamları görür.</p></div>
-      </div>
+      <ul class="feats">
+        <li class="feat"><h3>Hızlı satış</h3><p>Barkod okuyucuyla satış; <span class="mono">3*barkod</span> ile adet, F2 ödeme, F4 müşteri. Ürün listesi stok durumuyla yeşil, sarı, kırmızı görünür.</p></li>
+        <li class="feat"><h3>Çek / senet</h3><p>Alınan ve verilen çekler, vadeler, portföy. Tahsil, ciro, karşılıksız ve iade; her adım cariye ve kasaya doğru yansır.</p></li>
+        <li class="feat"><h3>Stok sayımı</h3><p>Rafı barkodla okutun, farklar anında görünsün. Kaydedince tek bir sayım düzeltmesi oluşur; yarım kalan sayım kaybolmaz.</p></li>
+        <li class="feat"><h3>Excel'den aktarma</h3><p>Ürünlerinizi, carilerinizi, açılış stoklarını ve bakiyelerini tek dosyayla aktarın. Hatalı satırlar aktarmadan önce gösterilir.</p></li>
+        <li class="feat"><h3>WhatsApp ile gönder</h3><p>Cari ekstreyi, satış belgesini ya da servis fişini PDF olarak kaydedip müşterinin numarasıyla hazır mesajla gönderin.</p></li>
+        <li class="feat"><h3>Raporlar</h3><p>Hazır satış, stok, cari ve kasa raporları; kendi raporunuzu sütun seçerek kurun. Raporlar Excel'de açılan CSV olarak iner.</p></li>
+        <li class="feat"><h3>Kâr / zarar ve nakit akışı</h3><p>Dönemin net kârı ve önümüzdeki günlerde kasanızda olacak para: alacaklar, borçlar ve çeklerle birlikte.</p></li>
+        <li class="feat"><h3>Servis yönetimi</h3><p>Arıza kaydı, servis fişi, parça ve işçilik, teslim. Fişi yazdırın ya da WhatsApp ile müşteriye iletin.</p></li>
+        <li class="feat"><h3>Taksitli satış</h3><p>Satışı taksitlendirin, vadesi gelen taksitleri listeden tahsil edin. Pazarlamacı prim raporu da hazır.</p></li>
+        <li class="feat"><h3>Fiyat yönetimi</h3><p>Müşteriye özel fiyat listeleri ve toplu fiyat değiştirme: yüzde, tutar ya da kâr oranıyla, geçmişiyle birlikte.</p></li>
+        <li class="feat"><h3>Patron paneli</h3><p>Kullanıcılar, roller ve yetkiler. Kasiyer yalnızca kasayı, muhasebe yalnızca finansı görür; maliyetleri yalnızca siz.</p></li>
+        <li class="feat"><h3>Hızlı ekleme kısayolları</h3><p>Satış ya da alış ekranından çıkmadan yeni müşteri, tedarikçi veya depo ekleyin. Tek "Oluştur" menüsü her yere götürür.</p></li>
+      </ul>
     </div>
   </section>
 
-  <section class="sec" id="e-donusum" aria-labelledby="e-h" style="border-top:1px solid var(--line)">
+  <section class="sec share" id="paylasim" aria-labelledby="share-h" style="border-top:1px solid var(--line)">
     <div class="wrap edoc">
       <div class="edoc__text">
-        <h2 id="e-h">e-Fatura, siparişin kendisinden doğar.</h2>
-        <p class="lede">Fatura satırları sevk edilen miktardan, KDV ürün kartından, alıcı bilgisi cari karttan gelir. Muhasebe faturayı yeniden yazmaz, kontrol edip gönderir.</p>
+        <h2 id="share-h">Ekstreyi yazdırın, PDF'e kaydedin, WhatsApp'la gönderin.</h2>
+        <p class="lede">Cari ekstre, satış belgeleri, teklif, sipariş, irsaliye ve servis fişi A4 olarak yazdırılır. "WhatsApp ile gönder" müşterinin numarasını ve bakiyesini içeren mesajı hazırlar; siz PDF'i ekleyip gönderirsiniz.</p>
         <div class="eitems">
-          <div class="eitem"><b>e-Fatura</b><span>e-Fatura mükellefi alıcılara GİB üzerinden gönderim, kabul ve red yanıtlarının takibi.</span></div>
-          <div class="eitem"><b>e-Arşiv Fatura</b><span>Mükellef olmayan alıcılar ve son tüketici için; PDF'i e-postayla iletilir.</span></div>
-          <div class="eitem"><b>e-İrsaliye</b><span>Sevkiyat çıkışında düzenlenir; fatura bu irsaliyeye bağlanır.</span></div>
+          <div class="eitem"><b>Cari ekstre</b><span>Dönem başı bakiye, hareketler, yürüyen bakiye ve vadeler.</span></div>
+          <div class="eitem"><b>Satış belgeleri</b><span>KDV dökümüyle satış, iade, teklif, sipariş ve irsaliye çıktıları.</span></div>
+          <div class="eitem"><b>Servis fişi</b><span>Arıza, yapılan işlem, parçalar ve imza alanları.</span></div>
         </div>
       </div>
       <div class="paper-stage">
-        <article class="paper" aria-label="Örnek e-Fatura">
+        <article class="paper" aria-label="Örnek cari hesap ekstresi">
           <div class="paper__top">
-            <div class="who"><b>Demir Bağlantı Elemanları Ltd. Şti.</b><span>Örnek satıcı · VKN 1234567890<br>OSB 4. Cad. No: 12, Gebze / Kocaeli</span></div>
-            <div class="paper__title">e-FATURA</div>
-            <div class="who"><b>SAYIN Örnek Makina A.Ş.</b><span>VKN 9876543210<br>Ostim OSB, Yenimahalle / Ankara</span></div>
+            <div class="who"><b>Örnek Market</b><span>Örnek işletme · Kadıköy / İstanbul</span></div>
+            <div class="paper__title">CARİ EKSTRE</div>
           </div>
           <dl class="paper__meta">
-            <dt>Özelleştirme No</dt><dd>TR1.2</dd>
-            <dt>Senaryo</dt><dd>TEMELFATURA</dd>
-            <dt>Fatura Tipi</dt><dd>SATIS</dd>
-            <dt>Fatura No</dt><dd>YDE2026000004812</dd>
-            <dt>Fatura Tarihi</dt><dd>09.10.2026</dd>
-            <dt>İrsaliye No</dt><dd>YDI2026000001942</dd>
-            <dt>ETTN</dt><dd>3f2a9c41-7b0e-4d8a-9e61-0c5b8f27d913</dd>
+            <dt>Cari</dt><dd>Mehmet Yıldız (CR-000001)</dd>
+            <dt>Dönem</dt><dd>01.01.2026 – 24.10.2026</dd>
           </dl>
           <table>
-            <thead><tr><th>Sıra</th><th>Mal / Hizmet</th><th class="n">Miktar</th><th class="n">Birim fiyat</th><th class="n">KDV</th><th class="n">Tutar</th></tr></thead>
+            <thead><tr><th>Tarih</th><th>Belge</th><th class="n">Borç</th><th class="n">Alacak</th><th class="n">Bakiye</th></tr></thead>
             <tbody>
-              <tr><td class="mono">1</td><td>Paslanmaz bağlantı parçası M12</td><td class="n">250 ad.</td><td class="n">193,00</td><td class="n">%20</td><td class="n">48.250,00</td></tr>
+              <tr><td class="mono">09.09</td><td class="mono">SAT-2026-000118</td><td class="n">2.818,40</td><td class="n"></td><td class="n">2.818,40</td></tr>
+              <tr><td class="mono">12.10</td><td class="mono">SAT-2026-000207</td><td class="n">1.159,60</td><td class="n">200,00</td><td class="n">3.778,00</td></tr>
+              <tr><td class="mono">19.10</td><td class="mono">TAH-2026-000041</td><td class="n"></td><td class="n">1.000,00</td><td class="n">2.778,00</td></tr>
+              <tr><td class="mono">20.10</td><td class="mono">SNT-2026-000001</td><td class="n"></td><td class="n">1.000,00</td><td class="n">1.778,00</td></tr>
             </tbody>
           </table>
           <dl class="paper__sum">
-            <dt>Mal hizmet toplam</dt><dd>48.250,00 TL</dd>
-            <dt>Hesaplanan KDV (%20)</dt><dd>9.650,00 TL</dd>
-            <dt class="tot">Ödenecek tutar</dt><dd class="tot">57.900,00 TL</dd>
+            <dt class="tot">Güncel bakiye</dt><dd class="tot">1.778,00 TL</dd>
           </dl>
-          <div class="paper__foot"><span>Vade: 08.11.2026</span><span>Örnek belge · YD ERP</span></div>
+          <div class="paper__foot"><span>Örnek belge · YD ERP</span></div>
         </article>
+        <div class="bubble" aria-label="Örnek WhatsApp mesajı">
+          <p>Sayın Mehmet Yıldız,<br>24.10.2026 tarihli hesap ekstreniz ektedir.<br>Güncel bakiye: ₺1.778,00 (borcunuz)</p>
+          <span class="bubble__file">ekstre-mehmet-yildiz.pdf</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="sec" id="gecis" aria-labelledby="g-h" style="border-top:1px solid var(--line)">
+  <section class="sec" id="guvence" aria-labelledby="g-h" style="border-top:1px solid var(--line)">
     <div class="wrap">
       <div class="sec__head">
-        <h2 id="g-h">Mevcut programınızdan üç adımda geçiş.</h2>
-        <p class="lede">Eski sistemi bir gecede kapatmanızı istemiyoruz. Veriler aktarılır, iki sistem bir süre yan yana çalışır, rakamlar tuttuğunda geçiş tamamlanır.</p>
+        <h2 id="g-h">Verileriniz sizde. İnternet kesilse de çalışırsınız.</h2>
+        <p class="lede">YD ERP bir bulut aboneliği değil; bilgisayarınıza kurulan bir program. Veritabanı kendi bilgisayarınızda çalışır, internet yalnızca lisans doğrulaması ve güncellemeler için ara sıra gerekir.</p>
+      </div>
+      <ul class="feats feats--four">
+        <li class="feat"><h3>İnternetsiz çalışma</h3><p>Satış, stok, kasa: hepsi internet olmadan çalışır. Bağlantı geldiğinde lisans kendiliğinden doğrulanır.</p></li>
+        <li class="feat"><h3>Günlük otomatik yedek</h3><p>Program her gün yedek alır. Yedeği USB belleğe kopyalayın, gerektiğinde tek adımla geri yükleyin.</p></li>
+        <li class="feat"><h3>Kullanıcı ve yetki</h3><p>Her çalışanın kendi kullanıcısı ve rolü olur. Kim neyi görebilir, neyi değiştirebilir; siz belirlersiniz.</p></li>
+        <li class="feat"><h3>İşlem geçmişi</h3><p>Kim hangi belgeyi ne zaman kesti, kim iptal etti, nedeni neydi; hepsi kayıtlı. Belgeler silinmez, ters kayıtla iptal edilir.</p></li>
+      </ul>
+      <p class="note">Yeni sürüm çıktığında program sizi uyarır; "Şimdi güncelle" dediğinizde verilerinize dokunmadan güncellenir.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="gecis" aria-labelledby="gc-h" style="border-top:1px solid var(--line)">
+    <div class="wrap">
+      <div class="sec__head">
+        <h2 id="gc-h">Bugün kurun, yarın satışa başlayın.</h2>
+        <p class="lede">Eski programınızdaki ya da Excel'deki listeleri baştan yazmanız gerekmez.</p>
       </div>
       <div class="steps-wrap">
         <ol class="steps">
-          <li class="gstep"><h3>Keşif</h3><p>Teklif, sipariş ve fatura akışınızı belgeleriniz üzerinden birlikte çıkarırız. Hangi modülün ne zaman açılacağı burada belli olur.</p></li>
-          <li class="gstep"><h3>Veri aktarımı</h3><p>Cari kartlar, stok kartları, açık bakiyeler ve fiyat listeleri Excel'den ya da mevcut programınızdan aktarılır.</p></li>
-          <li class="gstep"><h3>Paralel çalışma</h3><p>İki sistem aynı ayı kapatır. Bakiyeler eşleştiğinde eski programı kapatırsınız; ekibiniz o güne kadar eğitimini almış olur.</p></li>
+          <li class="gstep"><h3>İndirin ve kurun</h3><p>Kurulum dosyasını indirip çalıştırın. Veritabanı dahil her şey programla birlikte gelir; ayrıca bir şey kurmanız gerekmez.</p></li>
+          <li class="gstep"><h3>Lisansınızı etkinleştirin</h3><p>İlk açılışta lisans ekranı gelir. Size verilen lisansla ya da hazır hesap bilgileriyle giriş yaparsınız.</p></li>
+          <li class="gstep"><h3>Listelerinizi aktarın</h3><p>Ürünler, cariler, açılış stokları ve bakiyeler Excel'den tek seferde gelir. Hatalı satırları aktarmadan önce görürsünüz.</p></li>
         </ol>
       </div>
     </div>
@@ -314,75 +262,109 @@
   <section class="sec dl" id="indir" aria-labelledby="dl-h">
     <div class="wrap dl__grid">
       <div class="dl__left">
-        <h2 id="dl-h">Hemen indir, bugün başla.</h2>
-        <p class="lede">YD ERP bilgisayarda ve telefonda aynı kayıtla çalışır. Ofiste girilen sipariş, sahadaki satış temsilcisinin telefonunda aynı anda görünür.</p>
+        <h2 id="dl-h">YD ERP'yi indirin.</h2>
+        <p class="lede">Kurulum dosyası ücretsiz indirilir. Programı kullanmak için lisans gerekir; lisans ve fiyat bilgisi için bize ulaşın.</p>
         <div class="dl__primary">
-          <a class="btn btn--lg dl-btn" id="dl-main" href="https://github.com/yigitdellaloglu/YD-ERP-Lisans/releases/download/v1.1.1/YD-ERP-Kurulum-1.1.1.exe" data-plat="windows">
+          <a class="btn btn--lg dl-link" id="dl-main" href="https://github.com/yigitdellaloglu/YD-ERP-Lisans/releases/latest" rel="noopener">
             <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v9M4 7.5 8 11.5l4-4M3 14h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span id="dl-main-label">Windows için indir</span>
+            <span>Windows için indir</span>
           </a>
-          <a class="btn btn--lg btn--ghost" href="#platformlar">Tüm platformlar</a>
+          <a class="btn btn--lg btn--ghost" href="#iletisim">Lisans iste</a>
         </div>
-        <p class="dl__hint" id="dl-hint">Windows sürümü hazır. macOS, iPhone ve Android sürümleri yakında.</p>
+        <p class="dl__hint" id="dl-hint">En son sürüm · Windows 10 ve 11 (64 bit)</p>
       </div>
-      <div id="platformlar">
-        <ul class="plats">
-          <li class="plat" data-plat="windows">
-            <span class="plat__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></svg></span>
-            <span class="plat__name"><b>Windows</b><span>Masaüstü uygulaması · .exe</span></span>
-            <a class="btn btn--sm dl-btn" href="https://github.com/yigitdellaloglu/YD-ERP-Lisans/releases/download/v1.1.1/YD-ERP-Kurulum-1.1.1.exe" data-plat="windows">İndir</a>
-          </li>
-          <li class="plat" data-plat="mac">
-            <span class="plat__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="10" rx="1.5"/><path d="M2 18.5h20l-1.5-2.5h-17Z"/></svg></span>
-            <span class="plat__name"><b>macOS</b><span>Masaüstü uygulaması · .dmg</span></span>
-            <span class="plat__soon">Yakında</span>
-          </li>
-          <li class="plat" data-plat="ios">
-            <span class="plat__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></span>
-            <span class="plat__name"><b>iPhone ve iPad</b><span>App Store</span></span>
-            <span class="plat__soon">Yakında</span>
-          </li>
-          <li class="plat" data-plat="android">
-            <span class="plat__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M7 5.5h10M7 18h10"/></svg></span>
-            <span class="plat__name"><b>Android</b><span>Google Play</span></span>
-            <span class="plat__soon">Yakında</span>
-          </li>
-        </ul>
-        <p class="dl__note" id="dl-note" role="status"></p>
+      <div>
+        <dl class="specs">
+          <div><dt>Sürüm</dt><dd class="js-version-full">En son yayınlanan sürüm</dd></div>
+          <div><dt>İşletim sistemi</dt><dd>Windows 10 veya Windows 11, 64 bit</dd></div>
+          <div><dt>Disk</dt><dd>En az 1 GB boş alan (yedekler için daha fazlası önerilir)</dd></div>
+          <div><dt>İnternet</dt><dd>Kurulum, lisans doğrulama ve güncellemeler için; günlük kullanımda gerekmez</dd></div>
+          <div><dt>Dil</dt><dd>Türkçe</dd></div>
+          <div><dt>Diğer cihazlar</dt><dd>macOS, iPhone ve Android sürümü şu an yok</dd></div>
+        </dl>
       </div>
     </div>
   </section>
 
-  <section class="sec demo" id="demo" aria-labelledby="d-h">
+  <section class="sec" id="sss" aria-labelledby="sss-h" style="border-top:1px solid var(--line)">
+    <div class="wrap faq-grid">
+      <div class="sec__head">
+        <h2 id="sss-h">Sık sorulanlar</h2>
+        <p class="lede">Aradığınızı bulamazsanız <a href="#iletisim">bize yazın</a>.</p>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>İnternet olmadan çalışır mı?</summary>
+          <p>Evet. Program ve veritabanı bilgisayarınızda çalışır. İnternet yalnızca lisansın ara sıra doğrulanması ve güncellemeler için gerekir; bağlantı uzun süre gelmezse program lisansınızda tanımlı gün sayısı boyunca çalışmaya devam eder, sonra bir kez internete bağlanmanız yeterlidir.</p>
+        </details>
+        <details>
+          <summary>e-Fatura veya e-Arşiv gönderebilir miyim?</summary>
+          <p>Şu an hayır; YD ERP'de GİB'e e-Fatura, e-Arşiv ya da e-İrsaliye gönderimi yok. Satış belgelerini ve ekstreleri yazdırabilir, PDF olarak kaydedip e-posta ya da WhatsApp ile iletebilirsiniz.</p>
+        </details>
+        <details>
+          <summary>Verilerim kaybolur mu?</summary>
+          <p>Program her gün kendiliğinden yedek alır. Yedekleri ara sıra bir USB belleğe ya da başka bir diske kopyalamanızı öneririz; geri yükleme programın menüsünden tek adımda yapılır.</p>
+        </details>
+        <details>
+          <summary>Birden fazla çalışan kullanabilir mi?</summary>
+          <p>Evet. Her çalışan kendi kullanıcı adıyla giriş yapar ve yalnızca rolünün izin verdiği ekranları görür: kasiyer, satış personeli, depo sorumlusu, muhasebe gibi. Program kurulu olduğu bilgisayarda çalışır.</p>
+        </details>
+        <details>
+          <summary>Telefonda ya da Mac'te çalışıyor mu?</summary>
+          <p>Şu an yalnızca Windows sürümü var.</p>
+        </details>
+        <details>
+          <summary>Eski programımdaki bilgileri aktarabilir miyim?</summary>
+          <p>Evet. Ürünlerinizi ve carilerinizi Excel (.xlsx) ya da CSV dosyasından aktarabilirsiniz; mevcut stok miktarları ve müşteri/tedarikçi bakiyeleri de birlikte gelir. Program hazır bir şablon da verir.</p>
+        </details>
+        <details>
+          <summary>Güncellemeler nasıl geliyor?</summary>
+          <p>Yeni sürüm yayınlandığında program açılışta haber verir. "Şimdi güncelle" dediğinizde yeni sürüm indirilir ve kurulur; verileriniz olduğu gibi kalır.</p>
+        </details>
+        <details>
+          <summary>Lisans nasıl alınır?</summary>
+          <p>Aşağıdaki formdan ya da WhatsApp'tan bize ulaşın. İşletmenize uygun lisansı tanımlar, size giriş bilgilerinizi iletiriz.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec demo" id="iletisim" aria-labelledby="d-h">
     <div class="wrap demo__grid">
       <div class="demo__left">
-        <h2 id="d-h">Kendi siparişinizi bu yoldan geçirelim.</h2>
-        <p class="lede">Formu doldurun, sizinle bir görüşme ayarlayalım. Demoda örnek bir şirket yerine sizin ürünlerinizle ve belgelerinizle bir siparişi baştan sona işleriz.</p>
+        <h2 id="d-h">Lisans ve bilgi için bize ulaşın.</h2>
+        <p class="lede">Formu doldurun; mesajınız WhatsApp ya da e-posta uygulamanızda hazır olarak açılır, siz gönderirsiniz. Size en kısa sürede dönüş yapalım.</p>
+        <ul class="contact">
+          <li><span>WhatsApp</span><a href="https://wa.me/905530597002" target="_blank" rel="noopener">0553 059 70 02</a></li>
+          <li><span>E-posta</span><a href="mailto:yigitdellaloglu@gmail.com">yigitdellaloglu@gmail.com</a></li>
+        </ul>
       </div>
       <form class="form" id="demo-form" novalidate>
         <label>Ad soyad<input class="field" id="f-name" name="name" autocomplete="name" required></label>
-        <label>Firma<input class="field" id="f-company" name="company" autocomplete="organization" required></label>
-        <label>İş e-postası<input class="field" id="f-email" name="email" type="email" autocomplete="email" required></label>
+        <label>İşletme adı<input class="field" id="f-company" name="company" autocomplete="organization" required></label>
         <label>Telefon<input class="field" id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="0 5xx xxx xx xx"></label>
-        <label class="full">Çalışan sayısı
+        <label>Kullanıcı sayısı
           <select class="field" id="f-size" name="size">
             <option value="">Seçin</option>
-            <option>1 – 10</option><option>11 – 50</option><option>51 – 200</option><option>200'den fazla</option>
+            <option>1</option><option>2 – 3</option><option>4 – 10</option><option>10'dan fazla</option>
           </select>
         </label>
         <fieldset class="chips full">
-          <legend>İlgilendiğiniz modüller</legend>
-          <label class="chip"><input type="checkbox" id="m-sat" name="mod" value="satis"><span>Satış &amp; CRM</span></label>
-          <label class="chip"><input type="checkbox" id="m-stk" name="mod" value="stok"><span>Stok &amp; Depo</span></label>
-          <label class="chip"><input type="checkbox" id="m-urt" name="mod" value="uretim"><span>Üretim</span></label>
-          <label class="chip"><input type="checkbox" id="m-svk" name="mod" value="sevkiyat"><span>Sevkiyat</span></label>
-          <label class="chip"><input type="checkbox" id="m-edn" name="mod" value="efatura"><span>e-Fatura</span></label>
-          <label class="chip"><input type="checkbox" id="m-fin" name="mod" value="finans"><span>Finans</span></label>
-          <label class="chip"><input type="checkbox" id="m-ik" name="mod" value="ik"><span>İK &amp; Bordro</span></label>
+          <legend>En çok ne için kullanacaksınız?</legend>
+          <label class="chip"><input type="checkbox" name="mod" value="Hızlı satış ve kasa"><span>Hızlı satış ve kasa</span></label>
+          <label class="chip"><input type="checkbox" name="mod" value="Stok ve depo"><span>Stok ve depo</span></label>
+          <label class="chip"><input type="checkbox" name="mod" value="Veresiye ve cari"><span>Veresiye ve cari</span></label>
+          <label class="chip"><input type="checkbox" name="mod" value="Çek / senet"><span>Çek / senet</span></label>
+          <label class="chip"><input type="checkbox" name="mod" value="Servis"><span>Servis</span></label>
+          <label class="chip"><input type="checkbox" name="mod" value="Raporlar"><span>Raporlar</span></label>
         </fieldset>
+        <label class="full">Mesajınız<textarea class="field field--area" id="f-note" name="note" rows="3" maxlength="600"></textarea></label>
         <p class="form__err" id="form-err" role="alert"></p>
-        <div class="full"><button class="btn" type="submit">Demo iste
-          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+        <div class="full form__actions">
+          <button class="btn" type="submit" data-via="whatsapp">WhatsApp ile gönder
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="btn btn--ghost" type="submit" data-via="email">E-postayla gönder</button>
+        </div>
       </form>
     </div>
   </section>
@@ -393,15 +375,15 @@
     <div class="foot__top">
       <div class="foot__brand">
         <a class="brand" href="#top"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 4 29 10.5 16 17 3 10.5Z" fill="#fff"/><path d="M3 15.5 16 22l13-6.5" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><path d="M3 20.5 16 27l13-6.5" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" opacity=".55"/></svg>YD ERP</a>
-        <p>Tekliften tahsilata tek kayıt. YD ERP bir YDev ürünüdür.</p>
+        <p>Satış, stok, veresiye, çek/senet, kasa ve banka tek programda. YD ERP bir YDev ürünüdür.</p>
       </div>
       <nav class="foot__col" aria-labelledby="fh-urun">
         <p class="foot__h" id="fh-urun">Ürün</p>
         <ul>
+          <li><a href="#ekranlar">Ekranlar</a></li>
           <li><a href="#moduller">Modüller</a></li>
-          <li><a href="#panel">Yönetici paneli</a></li>
-          <li><a href="#e-donusum">e-Dönüşüm</a></li>
-          <li><a href="#gecis">Geçiş</a></li>
+          <li><a href="#ozellikler">Özellikler</a></li>
+          <li><a href="#sss">Sık sorulanlar</a></li>
           <li><a href="#indir">İndir</a></li>
         </ul>
       </nav>
@@ -419,7 +401,7 @@
         <ul class="foot__contact">
           <li><a href="mailto:yigitdellaloglu@gmail.com">yigitdellaloglu@gmail.com</a></li>
           <li><a href="tel:+905530597002">0553 059 70 02</a></li>
-          <li><a href="#demo">Demo iste</a></li>
+          <li><a href="#iletisim">Lisans iste</a></li>
         </ul>
         <div class="socials">
           <a class="social" data-social="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></a>
@@ -443,7 +425,7 @@
 <button class="totop" id="totop" type="button" aria-label="Sayfanın başına dön"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 
 <div class="cookie" id="cookie" role="region" aria-label="Çerez bildirimi" hidden>
-  <p>Bu site, deneyimini iyileştirmek için yalnızca temel çerezler ve tarayıcı depolaması kullanır. Sitede gezinmeye devam ederek <button class="foot__link" type="button" data-legal="cerez">Çerez Politikası</button>'nı kabul etmiş olursun.</p>
+  <p>Bu site reklam veya takip çerezi kullanmaz; yalnızca bu bildirimi kapattığınızı tarayıcınızda hatırlar. Ayrıntılar için <button class="foot__link" type="button" data-legal="cerez">Çerez Politikası</button>.</p>
   <button class="btn" type="button" id="cookie-ok">Anladım</button>
 </div>
 
@@ -454,40 +436,35 @@
   </div>
   <div class="legal__body">
     <article data-doc="gizlilik" data-title="Gizlilik Politikası">
-      <p class="legal__date">Son güncelleme: 09.10.2026</p>
-      <p>Bu politika, YDev tarafından sunulan YD ERP web sitesini ziyaret ettiğinizde hangi bilgilerin toplandığını ve nasıl kullanıldığını açıklar.</p>
-      <h3>Topladığımız bilgiler</h3>
+      <p class="legal__date">Son güncelleme: 24.10.2026</p>
+      <p>Bu politika, YDev tarafından sunulan YD ERP web sitesini ziyaret ettiğinizde hangi bilgilerin işlendiğini açıklar.</p>
+      <h3>İletişim formu</h3>
+      <p>Form bilgileri bu sitede saklanmaz ve bir sunucuya gönderilmez. "Gönder"e bastığınızda yazdıklarınız WhatsApp'ta ya da e-posta uygulamanızda hazır mesaj olarak açılır; mesajı göndermek size kalır. Gönderdiğiniz mesajı talebinize dönüş yapmak için kullanırız.</p>
+      <h3>Teknik bilgiler</h3>
       <ul>
-        <li><strong>Demo formu:</strong> ad soyad, firma adı, iş e-postası, telefon, çalışan sayısı ve ilgilendiğiniz modüller.</li>
-        <li><strong>Teknik bilgiler:</strong> site çalışırken tarayıcınızın standart olarak ilettiği IP adresi, tarayıcı türü ve cihaz bilgisi.</li>
-      </ul>
-      <h3>Bilgileri nasıl kullanıyoruz</h3>
-      <ul>
-        <li>Demo talebinize dönüş yapmak ve görüşme ayarlamak.</li>
-        <li>Sorularınızı yanıtlamak.</li>
-        <li>Sitenin güvenli ve düzgün çalışmasını sağlamak.</li>
+        <li>Site çalışırken tarayıcınızın standart olarak ilettiği IP adresi, tarayıcı türü ve cihaz bilgisi barındırma sağlayıcısına ulaşır.</li>
+        <li>İndirme bağlantısını güncel tutmak için sayfa, GitHub'dan en son sürüm bilgisini ister; bu sırada IP adresiniz GitHub'a iletilir. Kurulum dosyası da GitHub üzerinden indirilir.</li>
       </ul>
       <p>Bilgilerinizi satmıyor, kiralamıyor ve reklam amacıyla üçüncü kişilerle paylaşmıyoruz.</p>
-      <h3>Saklama süresi</h3>
-      <p>Demo formu bilgilerini talebiniz sonuçlanana ve ardından yasal yükümlülüklerin gerektirdiği süre boyunca saklarız.</p>
+      <h3>Uygulamadaki veriler</h3>
+      <p>YD ERP uygulamasına girdiğiniz işletme verileri kendi bilgisayarınızda tutulur; bize gönderilmez. Lisans doğrulaması için yalnızca lisans ve kurulum bilgileri kontrol edilir.</p>
       <h3>İletişim</h3>
       <p>Gizlilikle ilgili sorularınız için: yigitdellaloglu@gmail.com</p>
     </article>
     <article data-doc="kvkk" data-title="KVKK Aydınlatma Metni" hidden>
-      <p class="legal__date">Son güncelleme: 09.10.2026</p>
+      <p class="legal__date">Son güncelleme: 24.10.2026</p>
       <p>6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) uyarınca, veri sorumlusu sıfatıyla YDev olarak kişisel verilerinizi aşağıda açıklanan kapsamda işliyoruz.</p>
       <h3>İşlenen kişisel veriler</h3>
-      <p>Kimlik (ad soyad), iletişim (e-posta, telefon), müşteri işlem (firma adı, çalışan sayısı, ilgilenilen modüller) ve işlem güvenliği (IP adresi) verileri.</p>
+      <p>Bize WhatsApp veya e-postayla ilettiğiniz kimlik (ad soyad), iletişim (telefon, e-posta) ve talep (işletme adı, kullanıcı sayısı, ilgilendiğiniz konular, mesajınız) bilgileri.</p>
       <h3>İşleme amaçları</h3>
       <ul>
-        <li>Demo ve bilgi taleplerinin alınması ve yanıtlanması,</li>
-        <li>Ürün ve hizmetlerin tanıtılması, teklif süreçlerinin yürütülmesi,</li>
-        <li>Bilgi güvenliği süreçlerinin yürütülmesi.</li>
+        <li>Lisans ve bilgi taleplerinin alınması ve yanıtlanması,</li>
+        <li>Lisans tanımlanması ve destek süreçlerinin yürütülmesi.</li>
       </ul>
       <h3>Hukuki sebepler ve toplama yöntemi</h3>
-      <p>Verileriniz web sitesindeki formlar aracılığıyla elektronik ortamda toplanır ve KVKK m.5/2 (c) bir sözleşmenin kurulmasıyla doğrudan ilgili olması ile m.5/2 (f) veri sorumlusunun meşru menfaati hukuki sebeplerine dayanılarak işlenir.</p>
+      <p>Verileriniz, bize kendi isteğinizle gönderdiğiniz mesajlar aracılığıyla elektronik ortamda toplanır ve KVKK m.5/2 (c) bir sözleşmenin kurulmasıyla doğrudan ilgili olması ile m.5/2 (f) veri sorumlusunun meşru menfaati hukuki sebeplerine dayanılarak işlenir.</p>
       <h3>Aktarım</h3>
-      <p>Verileriniz yalnızca talebinizi yanıtlayabilmek için kullandığımız e-posta ve barındırma hizmet sağlayıcılarıyla, bu amaçla sınırlı olarak paylaşılabilir.</p>
+      <p>Verileriniz yalnızca talebinizi yanıtlayabilmek için kullandığımız iletişim hizmet sağlayıcılarında (WhatsApp, e-posta) bulunur; başka amaçla paylaşılmaz.</p>
       <h3>Haklarınız (KVKK m.11)</h3>
       <ul>
         <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme ve bilgi talep etme,</li>
@@ -500,8 +477,8 @@
       <p>Başvurularınızı yigitdellaloglu@gmail.com adresine iletebilirsiniz.</p>
     </article>
     <article data-doc="cerez" data-title="Çerez Politikası" hidden>
-      <p class="legal__date">Son güncelleme: 09.10.2026</p>
-      <p>Bu site reklam veya takip çerezi kullanmaz. Yalnızca sitenin çalışması için gerekli olan aşağıdaki kayıtlar kullanılır.</p>
+      <p class="legal__date">Son güncelleme: 24.10.2026</p>
+      <p>Bu site reklam veya takip çerezi kullanmaz. Yalnızca sitenin çalışması için gerekli olan aşağıdaki kayıt kullanılır.</p>
       <h3>Zorunlu kayıtlar</h3>
       <ul>
         <li><strong>Çerez bildirimi tercihi:</strong> “Anladım” dediğinizi hatırlamak için tarayıcınızın yerel depolamasında saklanır. Silmek için tarayıcınızın site verilerini temizlemeniz yeterlidir.</li>
@@ -509,19 +486,20 @@
       <h3>Üçüncü taraf içerik</h3>
       <ul>
         <li><strong>Google Fonts:</strong> sitedeki yazı tipleri Google sunucularından yüklenir; bu sırada IP adresiniz Google'a iletilir.</li>
-        <li><strong>three.js:</strong> 3D sahne kütüphanesi site dosyasıyla birlikte ya da cdnjs (Cloudflare) içerik dağıtım ağından yüklenir.</li>
+        <li><strong>GitHub:</strong> en son sürüm bilgisi ve kurulum dosyası GitHub'dan alınır.</li>
+        <li><strong>three.js:</strong> 3D sahne kütüphanesi site dosyalarıyla birlikte yüklenir.</li>
       </ul>
       <p>Tarayıcı ayarlarınızdan çerezleri ve site verilerini dilediğiniz zaman engelleyebilir veya silebilirsiniz.</p>
     </article>
     <article data-doc="sartlar" data-title="Kullanım Şartları" hidden>
-      <p class="legal__date">Son güncelleme: 09.10.2026</p>
+      <p class="legal__date">Son güncelleme: 24.10.2026</p>
       <p>Bu web sitesini kullanarak aşağıdaki şartları kabul etmiş olursunuz.</p>
       <h3>İçerik</h3>
-      <p>Sitedeki bilgiler YD ERP'yi tanıtmak amacıyla sunulur. Ekran görüntülerinde ve örneklerde yer alan şirket adları, belge numaraları ve tutarlar örnek veridir; gerçek kişi veya kurumlara ait değildir.</p>
+      <p>Sitedeki bilgiler YD ERP'yi tanıtmak amacıyla sunulur. Ekran görüntülerinde ve örneklerde yer alan işletme ve kişi adları, belge numaraları ve tutarlar örnek veridir; gerçek kişi veya kurumlara ait değildir.</p>
       <h3>Fikri mülkiyet</h3>
       <p>YD ERP adı, logosu, site tasarımı ve içerikleri YDev'e aittir. İzin alınmadan kopyalanamaz, çoğaltılamaz veya ticari amaçla kullanılamaz.</p>
       <h3>Uygulama kullanımı</h3>
-      <p>İndirilen YD ERP uygulamasının kullanımı, uygulama içinde sunulan lisans sözleşmesine tabidir.</p>
+      <p>YD ERP uygulamasının kullanımı lisans koşullarına tabidir; uygulama geçerli bir lisansla çalışır.</p>
       <h3>Sorumluluk</h3>
       <p>Site içeriğinin doğru ve güncel olması için özen gösteririz; ancak içerikte değişiklik yapma hakkımız saklıdır. Siteden bağlantı verilen üçüncü taraf sitelerin içeriğinden sorumlu değiliz.</p>
       <h3>Uygulanacak hukuk</h3>

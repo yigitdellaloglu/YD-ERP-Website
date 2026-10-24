@@ -6,40 +6,67 @@
   function onScroll() { nav.classList.toggle('is-scrolled', window.scrollY > 8); }
   window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
-  /* ---- Formlar ---- */
-  var heroForm = document.getElementById('hero-form');
-  heroForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var v = document.getElementById('hero-email').value.trim();
-    document.getElementById('f-email').value = v;
-    document.getElementById('demo').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
-    setTimeout(function () { document.getElementById('f-name').focus({ preventScroll: true }); }, reduce ? 0 : 700);
-  });
-
+  /* ---- İletişim formu: mesaj WhatsApp'ta ya da e-posta uygulamasında hazır açılır ---- */
+  var CONTACT = { whatsapp: '905530597002', email: 'yigitdellaloglu@gmail.com' };
   var form = document.getElementById('demo-form');
   var err = document.getElementById('form-err');
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var name = document.getElementById('f-name'), company = document.getElementById('f-company'), email = document.getElementById('f-email');
-    [name, company, email].forEach(function (f) { f.removeAttribute('aria-invalid'); });
+    var via = e.submitter && e.submitter.dataset.via === 'email' ? 'email' : 'whatsapp';
+    var name = document.getElementById('f-name'), company = document.getElementById('f-company');
+    [name, company].forEach(function (f) { f.removeAttribute('aria-invalid'); });
     var bad = [];
     if (!name.value.trim()) bad.push([name, 'adınızı']);
-    if (!company.value.trim()) bad.push([company, 'firma adını']);
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) bad.push([email, 'geçerli bir e-posta adresi']);
+    if (!company.value.trim()) bad.push([company, 'işletme adını']);
     if (bad.length) {
       bad.forEach(function (b) { b[0].setAttribute('aria-invalid', 'true'); });
-      err.textContent = 'Lütfen ' + bad.map(function (b) { return b[1]; }).join(', ') + ' yazın.';
+      err.textContent = 'Lütfen ' + bad.map(function (b) { return b[1]; }).join(' ve ') + ' yazın.';
       bad[0][0].focus();
       return;
     }
     err.textContent = '';
-    var ok = document.createElement('div');
-    ok.className = 'form__ok'; ok.setAttribute('role', 'status');
-    ok.innerHTML = '<b></b><small>Bu önizlemede form henüz bir adrese bağlı değil; site yayına alınırken e-posta ya da CRM bağlantısı eklenecek.</small>';
-    ok.querySelector('b').textContent = 'Teşekkürler, ' + name.value.trim().split(' ')[0] + '. Talep bilgileriniz hazır.';
-    form.replaceChildren(ok);
+    var mods = Array.prototype.map.call(form.querySelectorAll('input[name="mod"]:checked'), function (i) { return i.value; });
+    var lines = ['Merhaba, YD ERP lisansı hakkında bilgi almak istiyorum.', '',
+      'Ad soyad: ' + name.value.trim(), 'İşletme: ' + company.value.trim()];
+    var phone = document.getElementById('f-phone').value.trim();
+    var size = document.getElementById('f-size').value;
+    var note = document.getElementById('f-note').value.trim();
+    if (phone) lines.push('Telefon: ' + phone);
+    if (size) lines.push('Kullanıcı sayısı: ' + size);
+    if (mods.length) lines.push('Kullanım: ' + mods.join(', '));
+    if (note) lines.push('', note);
+    var text = lines.join('\n');
+    var url = via === 'email'
+      ? 'mailto:' + CONTACT.email + '?subject=' + encodeURIComponent('YD ERP lisans talebi · ' + company.value.trim()) + '&body=' + encodeURIComponent(text)
+      : 'https://wa.me/' + CONTACT.whatsapp + '?text=' + encodeURIComponent(text);
+    if (via === 'email') window.location.href = url; else window.open(url, '_blank', 'noopener');
+    err.textContent = via === 'email'
+      ? 'E-posta uygulamanızda mesaj hazırlandı; göndermeyi unutmayın.'
+      : 'WhatsApp yeni sekmede açıldı; mesajı göndermeyi unutmayın.';
   });
 
+  /* ---- Ekranlar: gerçek ekran görüntüleri ---- */
+  var shotImg = document.getElementById('shot-img'), shotCap = document.getElementById('shot-cap');
+  var shotTabs = Array.prototype.slice.call(document.querySelectorAll('.shots__tabs [role="tab"]'));
+  function pickShot(tab) {
+    shotTabs.forEach(function (t) { t.setAttribute('aria-selected', String(t === tab)); t.tabIndex = t === tab ? 0 : -1; });
+    shotImg.src = 'assets/img/app/' + tab.dataset.shot + '.jpg';
+    shotImg.alt = 'YD ERP ' + tab.textContent.trim() + ' ekranı';
+    shotCap.textContent = tab.dataset.cap;
+  }
+  shotTabs.forEach(function (tab, i) {
+    tab.tabIndex = i === 0 ? 0 : -1;
+    tab.addEventListener('click', function () { pickShot(tab); });
+    tab.addEventListener('keydown', function (e) {
+      var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!d) return;
+      e.preventDefault();
+      var next = shotTabs[(i + d + shotTabs.length) % shotTabs.length];
+      next.focus(); pickShot(next);
+    });
+    // Sonraki görüntüler önceden yüklenir; sekme değişince bekleme olmaz.
+    if (i > 0) { var pre = new Image(); pre.src = 'assets/img/app/' + tab.dataset.shot + '.jpg'; }
+  });
 
   /* ---- Sosyal medya: bağlantısı olanlar görünür ---- */
   var SOCIAL = {
@@ -98,50 +125,30 @@
   window.addEventListener('scroll', onTop, { passive: true }); onTop();
   totop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
 
-  /* ---- İndirme: cihaza göre öne çıkar ----
-     Gerçek bağlantıları buraya yazın; boş kalanlar tıklanınca not gösterir. */
-  var DOWNLOADS = {
-    windows: { url: 'https://github.com/yigitdellaloglu/YD-ERP-Lisans/releases/download/v1.1.1/YD-ERP-Kurulum-1.1.1.exe', label: 'Windows için indir', name: 'Windows' },
-    mac:     { soon: true, name: 'macOS' },
-    ios:     { soon: true, name: 'iPhone ve iPad' },
-    android: { soon: true, name: 'Android' }
-  };
-  var ua = navigator.userAgent || '', plat = 'windows';
-  if (/android/i.test(ua)) plat = 'android';
-  else if (/iphone|ipad|ipod/i.test(ua) || (/macintosh/i.test(ua) && navigator.maxTouchPoints > 1)) plat = 'ios';
-  else if (/mac os x|macintosh/i.test(ua)) plat = 'mac';
-  if (DOWNLOADS[plat].soon) {
-    document.getElementById('dl-hint').textContent = DOWNLOADS[plat].name + ' sürümü yakında. Şimdilik Windows sürümünü indirebilirsiniz.';
+  /* ---- İndirme: GitHub'daki en son sürüm ----
+     Lisans Yöneticisi her sürümü YD-ERP-Lisans deposunda "vX.Y.Z" olarak yayınlar. Sayfa en son
+     yayını sorar ve indirme düğmelerini doğrudan kurulum dosyasına bağlar; olmazsa yayın sayfasına
+     giden bağlantı kalır. */
+  var RELEASES = 'https://api.github.com/repos/yigitdellaloglu/YD-ERP-Lisans/releases/latest';
+  if (window.fetch) {
+    fetch(RELEASES, { headers: { accept: 'application/vnd.github+json' } })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (rel) {
+        if (!rel || !rel.assets) return;
+        var asset = rel.assets.filter(function (a) { return /^YD-ERP-Kurulum-.+\.exe$/.test(a.name); })[0];
+        if (!asset) return;
+        var version = String(rel.tag_name || '').replace(/^v/, '');
+        var size = asset.size ? ' · ' + Math.round(asset.size / 1048576) + ' MB' : '';
+        document.querySelectorAll('.dl-link').forEach(function (a) { a.href = asset.browser_download_url; });
+        var hint = document.getElementById('dl-hint');
+        if (hint) hint.textContent = 'Sürüm ' + version + size + ' · Windows 10 ve 11 (64 bit)';
+        document.querySelectorAll('.js-version-full').forEach(function (n) {
+          var when = rel.published_at ? new Date(rel.published_at).toLocaleDateString('tr-TR') : '';
+          n.textContent = 'YD ERP ' + version + (when ? ' · ' + when : '');
+        });
+      })
+      .catch(function () {});
   }
-  document.querySelectorAll('.plat').forEach(function (li) {
-    var mine = li.dataset.plat === plat;
-    var soon = DOWNLOADS[li.dataset.plat].soon;
-    li.classList.toggle('is-soon', !!soon);
-    li.classList.toggle('is-mine', mine && !soon);
-    if (mine && !soon) {
-      var tag = document.createElement('span'); tag.className = 'plat__mine'; tag.textContent = 'Bu cihaz';
-      li.querySelector('.plat__name b').appendChild(tag);
-    }
-  });
-  var note = document.getElementById('dl-note');
-  document.querySelectorAll('.dl-btn').forEach(function (a) {
-    var d = DOWNLOADS[a.dataset.plat];
-    if (d && d.url) { a.href = d.url; a.target = '_blank'; a.rel = 'noopener'; return; }
-    a.addEventListener('click', function (e) {
-      e.preventDefault();
-      note.textContent = (d ? d.label : 'Bu sürüm') + ': indirme bağlantısı henüz eklenmedi. Yayına alırken eklenecek.';
-    });
-  });
-
-  /* ---- Panel eğimi: görünüme girdikçe düzleşir ---- */
-  var dash = document.getElementById('dash');
-  function tilt() {
-    if (reduce) return;
-    var r = dash.getBoundingClientRect(), vh = window.innerHeight;
-    var p = Math.min(1, Math.max(0, (vh - r.top) / (vh * .75)));
-    dash.style.setProperty('--tilt', (14 * (1 - p)).toFixed(2) + 'deg');
-  }
-  window.addEventListener('scroll', tilt, { passive: true }); tilt();
 
   /* ---- Modül listesi: aktif madde ---- */
   var mods = Array.prototype.slice.call(document.querySelectorAll('.mod'));
@@ -177,12 +184,12 @@
 
   /* ================= 3D modül yığını ================= */
   var MODS = [
-    { n: 'Satış & CRM', c: 'SAT', w: 'müşteri · fiyat · sipariş' },
-    { n: 'Stok & Depo', c: 'STK', w: 'rezervasyon · hareket' },
-    { n: 'Üretim & Satın alma', c: 'ÜRT', w: 'iş emri · sarf · maliyet' },
-    { n: 'Sevkiyat', c: 'SVK', w: 'e-İrsaliye · teslim' },
-    { n: 'e-Fatura & e-Arşiv', c: 'EDN', w: 'fatura · KDV' },
-    { n: 'Finans & Tahsilat', c: 'FİN', w: 'tahsilat · cari' }
+    { n: 'Teklif & Sipariş', c: 'STK', w: 'teklif · sipariş · fiyat' },
+    { n: 'Stok & Depo', c: 'DEPO', w: 'stok · sayım · transfer' },
+    { n: 'Sevk İrsaliyesi', c: 'SIR', w: 'irsaliye · sevk' },
+    { n: 'Satış & Alış', c: 'SAT', w: 'satış · iade · KDV' },
+    { n: 'Cari & Veresiye', c: 'CARİ', w: 'borç · alacak · vade' },
+    { n: 'Kasa, Banka & Çek', c: 'KASA', w: 'tahsilat · çek · senet' }
   ];
   var W = 5, H = .22, D = 3.2, GAP = 1.12;
   var WHITE = new THREE.Color(0xf2f2ee);
@@ -215,12 +222,12 @@
   }
 
   var DOCS = [
-    ['SİPARİŞ', 'SİP-2026-1187', '250 ad.'],
-    ['REZERVE', 'DEPO-1', '250 ad.'],
-    ['İŞ EMRİ', 'İE-2026-0331', '250 ad.'],
-    ['İRSALİYE', 'YDI2026000001942', '250 ad.'],
-    ['e-FATURA', 'YDE2026000004812', '57.900,00 TL'],
-    ['TAHSİLAT', 'Vade 08.11.2026', '57.900,00 TL']
+    ['TEKLİF', 'STK-2026-000014', '30 koli'],
+    ['STOK', 'Ana Depo', '−30 koli'],
+    ['İRSALİYE', 'SIR-2026-000006', '30 koli'],
+    ['SATIŞ', 'SAT-2026-000231', '12.350,00 TL'],
+    ['CARİ', 'Vade 30.10.2026', '12.350,00 TL'],
+    ['ÇEK', 'CEK-2026-000004', '12.350,00 TL']
   ];
   function docTex() {
     var cv = document.createElement('canvas'); cv.width = 480; cv.height = 640;
@@ -234,7 +241,7 @@
       x.font = '800 52px Archivo, Arial, sans-serif'; x.fillText(d[0], 36, 92);
       x.font = '500 22px "JetBrains Mono", monospace'; x.fillStyle = '#555';
       x.fillText(d[1], 36, 134);
-      x.fillText('09.10.2026', 36, 166);
+      x.fillText('15.10.2026', 36, 166);
       x.fillStyle = '#d6d6d1';
       for (var i = 0; i < 6; i++) x.fillRect(36, 220 + i * 44, i % 2 ? 300 : 408, 12);
       x.fillStyle = '#0f0f0f'; x.fillRect(36, 500, 408, 3);
